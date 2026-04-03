@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dream House | FCM.41.008.143.24</title>
+    <!-- A-Frame Library (from local XAMPP) -->
+    <script src="script/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <!-- Add a timeout so A-Frame won't hang forever if an asset is slow -->
+        <a-assets timeout="10000">
+            <!-- Models from the Assets folder -->
+            <a-asset-item id="villa" src="Assets/tuscan_villa_-_italian_villa/scene.gltf"></a-asset-item>
+            <a-asset-item id="car3" src="Assets/free_porsche_911_carrera_4s/scene.gltf"></a-asset-item>
+            <a-asset-item id="sky-model" src="Assets/unreal_engine_4_sky/scene.gltf"></a-asset-item>
+            <img id="floor-texture" src="Assets/brick-floor.jpg"></img>
+            <a-asset-item id="gate" src="Assets/gate/scene.gltf"></a-asset-item>
+        </a-assets>
+
+        <!-- Parent entity for primary models -->
+        <a-entity position="-2 0 -25">
+            <a-entity gltf-model="#villa" position="0 0 0" scale="0.5 0.5 0.5"></a-entity>
+            <a-entity gltf-model="#car3" rotation="0 90 0" scale="15 15 15" position="20 10 -25"></a-entity>
+        </a-entity>
+
+        <!-- Sky Model -->
+        <a-entity gltf-model="#sky-model" scale="100 100 100"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 150000; easing: linear">
+        </a-entity>
+
+        <!-- Ground plane raised to Y = 0 to unify the floor level -->
+        <a-plane src="#floor-texture" position="0 -4 0" width="10000" height="10000" rotation="-90 0 0"
+            material="repeat: 500 500"></a-plane>
+
+        <!-- ===== VILLA PERIMETER WALLS ===== -->
+
+        <!-- left wall -->
+        <a-box position="-27.55 0.5 -120" width="4" height="39.5" depth="508" color="#ffffff"></a-box>
+        <!-- right wall -->
+        <a-box position="320.45 0.5 -120" width="4" height="39.5" depth="508" color="#ffffff"></a-box>
+
+        <!-- left front wall -->
+        <a-box position="10.5 0.5 133" width="4" height="39.5" depth="85" rotation="0 90 0" color="#ffffff"></a-box>
+        <!-- right front wall -->
+        <a-box position="250 0.5 134" width="4" height="39.5" depth="145" rotation="0 90 0" color="#ffffff"></a-box>
+
+        <a-entity gltf-model="#gate" position="110 -5 134" scale="50 50 50"></a-entity>
+
+        <a-camera position="100 30 30" wasd-controls="acceleration: 1000; enabled: true; fly: true; speed: 0.5;"
+            look-controls></a-camera>
+    </a-scene>
+</body>
+
+</html>

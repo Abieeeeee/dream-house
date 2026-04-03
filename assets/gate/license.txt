@@ -1,0 +1,11 @@
+Model Information:
+* title:	gate
+* source:	https://sketchfab.com/3d-models/gate-d8d30ae395844a2faa823e182fa354cc
+* author:	cabbageislettuce (https://sketchfab.com/cabbageislettuce)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "gate" (https://sketchfab.com/3d-models/gate-d8d30ae395844a2faa823e182fa354cc) by cabbageislettuce (https://sketchfab.com/cabbageislettuce) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
