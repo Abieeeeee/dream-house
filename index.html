@@ -16,6 +16,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #000;
         }
+
         a-scene {
             height: 100vh;
             width: 100vw;
@@ -36,12 +37,12 @@
 
         <!-- ================= SKY ================= -->
         <a-entity gltf-model="#sky-model" scale="100 100 100"
-                  animation="property: rotation; to: 0 360 0; loop: true; dur: 150000; easing: linear">
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 400000; easing: linear">
         </a-entity>
 
         <!-- ================= GROUND ================= -->
         <a-plane src="#floor-texture" rotation="-90 0 0" width="10000" height="10000"
-                 material="repeat: 500 500; roughness: 1" position="0 -4 0">
+            material="repeat: 500 500; roughness: 1" position="0 -4 0">
         </a-plane>
 
         <!-- ================= VILLA + VEHICLE ================= -->
@@ -64,9 +65,7 @@
 
         <!-- ================= CAMERA ================= -->
         <a-entity position="100 30 30">
-            <a-camera 
-                wasd-controls="acceleration: 1000; fly: true; speed: 0.5;"
-                look-controls
+            <a-camera wasd-controls="acceleration: 1000; fly: true; speed: 0.5;" look-controls
                 orbit-controls="target: 0 0 0; enableDamping: true; dampingFactor: 0.125; rotateSpeed:0.25;">
             </a-camera>
         </a-entity>
