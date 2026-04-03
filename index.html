@@ -5,54 +5,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Dream House | FCM.41.008.143.24</title>
-    <!-- A-Frame Library (from local XAMPP) -->
+    <!-- A-Frame Library -->
     <script src="script/aframe.min.js"></script>
+    <!-- Optional: A-Frame Extras for advanced controls -->
+    <script src="https://unpkg.com/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+        }
+        a-scene {
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
 </head>
 
 <body>
-    <a-scene>
-        <!-- Add a timeout so A-Frame won't hang forever if an asset is slow -->
-        <a-assets timeout="10000">
-            <!-- Models from the Assets folder -->
+    <a-scene background="color: #87CEEB" embedded>
+        <!-- ================= ASSETS ================= -->
+        <a-assets timeout="15000">
             <a-asset-item id="villa" src="assets/tuscan-villa.glb"></a-asset-item>
-            <a-asset-item id="car3"
-                src="assets/2018-porsche-911/source/2018_porsche_911_carrera_gts.glb"></a-asset-item>
+            <a-asset-item id="car" src="assets/2018-porsche-911/source/2018_porsche_911_carrera_gts.glb"></a-asset-item>
             <a-asset-item id="sky-model" src="assets/unreal_engine_4_sky.glb"></a-asset-item>
-            <img id="floor-texture" src="assets/brick-floor.jpg"></img>
             <a-asset-item id="gate" src="assets/gate.glb"></a-asset-item>
+            <img id="floor-texture" src="assets/brick-floor.jpg">
         </a-assets>
 
-        <!-- Parent entity for primary models -->
+        <!-- ================= SKY ================= -->
+        <a-entity gltf-model="#sky-model" scale="100 100 100"
+                  animation="property: rotation; to: 0 360 0; loop: true; dur: 150000; easing: linear">
+        </a-entity>
+
+        <!-- ================= GROUND ================= -->
+        <a-plane src="#floor-texture" rotation="-90 0 0" width="10000" height="10000"
+                 material="repeat: 500 500; roughness: 1" position="0 -4 0">
+        </a-plane>
+
+        <!-- ================= VILLA + VEHICLE ================= -->
         <a-entity position="-2 0 -25">
             <a-entity gltf-model="#villa" position="0 0 0" scale="0.5 0.5 0.5"></a-entity>
-            <a-entity gltf-model="#car3" rotation="0 90 0" scale="1800 1800 1800" position="30 0 -40"></a-entity>
+            <a-entity gltf-model="#car" rotation="0 90 0" scale="1800 1800 1800" position="30 0 -40"></a-entity>
         </a-entity>
 
-        <!-- Sky Model -->
-        <a-entity gltf-model="#sky-model" scale="100 100 100"
-            animation="property: rotation; to: 0 360 0; loop: true; dur: 150000; easing: linear">
-        </a-entity>
-
-        <!-- Ground plane raised to Y = 0 to unify the floor level -->
-        <a-plane src="#floor-texture" position="0 -4 0" width="10000" height="10000" rotation="-90 0 0"
-            material="repeat: 500 500"></a-plane>
-
-        <!-- ===== VILLA PERIMETER WALLS ===== -->
-
-        <!-- left wall -->
+        <!-- ================= VILLA PERIMETER WALLS ================= -->
+        <!-- Left & Right Walls -->
         <a-box position="-27.55 0.5 -120" width="4" height="39.5" depth="508" color="#ffffff"></a-box>
-        <!-- right wall -->
         <a-box position="320.45 0.5 -120" width="4" height="39.5" depth="508" color="#ffffff"></a-box>
 
-        <!-- left front wall -->
+        <!-- Front Walls -->
         <a-box position="10.5 0.5 133" width="4" height="39.5" depth="85" rotation="0 90 0" color="#ffffff"></a-box>
-        <!-- right front wall -->
         <a-box position="250 0.5 134" width="4" height="39.5" depth="145" rotation="0 90 0" color="#ffffff"></a-box>
 
+        <!-- Gate -->
         <a-entity gltf-model="#gate" position="110 -5 134" scale="50 50 50"></a-entity>
 
-        <a-camera position="100 30 30" wasd-controls="acceleration: 1000; enabled: true; fly: true; speed: 0.5;"
-            look-controls></a-camera>
+        <!-- ================= CAMERA ================= -->
+        <a-entity position="100 30 30">
+            <a-camera 
+                wasd-controls="acceleration: 1000; fly: true; speed: 0.5;"
+                look-controls
+                orbit-controls="target: 0 0 0; enableDamping: true; dampingFactor: 0.125; rotateSpeed:0.25;">
+            </a-camera>
+        </a-entity>
+
+        <!-- ================= LIGHTING ================= -->
+        <a-entity light="type: ambient; intensity: 0.7;"></a-entity>
+        <a-entity light="type: directional; intensity: 0.8; castShadow: true;" position="100 100 100"></a-entity>
+
     </a-scene>
 </body>
 
